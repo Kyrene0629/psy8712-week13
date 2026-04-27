@@ -57,3 +57,16 @@ dbGetQuery(con, "
            GROUP BY performance_group
            ")
 
+# display each manager's location classification (urban vs. suburban), ID number, and test score, in alphabetical order by location type and then descending order of test score
+dbGetQuery(con, "
+           SELECT office_type,
+                  employee_id,
+                  test_score
+           FROM datascience_employees
+           INNER JOIN datascience_testscores
+           USING (employee_id)
+           LEFT JOIN datascience_offices
+           ON datascience_employees.city = datascience_offices.office
+           WHERE test_score IS NOT NULL
+           ORDER BY office_type ASC, test_score DESC
+           ")

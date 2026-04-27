@@ -24,6 +24,13 @@ dbGetQuery(con, "
            ")
 
 # display the total number of unique managers
+dbGetQuery(con, "
+           SELECT COUNT(DISTINCT employee_id) AS unique_managers
+           FROM datascience_employees
+           INNER JOIN datascience_testscores
+           USING (employee_id)
+           WHERE test_score IS NOT NULL
+           ")
 
 # display a summary of the number of managers split by location, but only include those who were not originally hired as managers
 

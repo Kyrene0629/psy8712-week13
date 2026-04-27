@@ -51,5 +51,17 @@ managers_by_location_tbl <- week13_tbl %>%
 managers_by_location_tbl
 
 # display the mean & sd of number of years of employment split by performance level
+years_performance_tbl <- week13_tbl %>% 
+  group_by(performance_group) %>% 
+  summarise(
+    mean_yrs_employed = mean(yrs_employed),
+    sd_yrs_employed = sd(yrs_employed)
+  )
+years_performance_tbl
 
+# display each manager's location classification (urban vs. suburban), ID number, and test score, in alphabetical order by location type and then descending order of test score
+manager_scores_tbl <- week13_tbl %>% 
+  select(office_type, employee_id, test_score) %>% 
+  arrange(office_type, desc(test_score))
+manager_scores_tbl
 

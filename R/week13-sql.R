@@ -46,5 +46,14 @@ dbGetQuery(con, "
            ")
 
 # display the mean & sd of number of years of employment split by performance level
-
+dbGetQuery(con, "
+           SELECT performance_group,
+                  AVG(yrs_employed) AS mean_yrs_employed,
+                  STDDEV(yrs_employed) AS sd_yrs_employed
+           FROM datascience_employees
+           INNER JOIN datascience_testscores
+           USING (employee_id)
+           WHERE test_score IS NOT NULL
+           GROUP BY performance_group
+           ")
 

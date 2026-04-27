@@ -49,7 +49,7 @@ unique_managers_tbl
 # diaplay a summary of the number of managers split by location, but only include those who were not originally hired as managers
 managers_by_location_tbl <- week13_tbl %>% 
   filter(manager_hire == "N") %>% 
-  count(office_type, name = "n_managers")
+  count(city, name = "n_managers")
 managers_by_location_tbl
 
 # display the mean & sd of number of years of employment split by performance level

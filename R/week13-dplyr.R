@@ -26,4 +26,9 @@ write_csv(employees_tbl, "../out/employees.csv")
 write_csv(testscores_tbl, "../out/testscores.csv")
 write_csv(offices_tbl, "../out/offices.csv")
 
+# combine & save data that remove employees without test scores using joins only
+week13_tbl <- employees_tbl %>%
+  inner_join(testscores_tbl, by = "employee_id") %>%
+  left_join(offices_tbl, by = c("city" = "office"))
+write_csv(week13_tbl, "../out/week13.csv")
 

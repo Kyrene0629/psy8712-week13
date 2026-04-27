@@ -33,6 +33,17 @@ dbGetQuery(con, "
            ")
 
 # display a summary of the number of managers split by location, but only include those who were not originally hired as managers
+dbGetQuery(con, "
+           SELECT city, 
+                  COUNT(employee_id) AS n_managers
+           FROM datascience_employees
+           INNER JOIN datascience_testscores
+           USING (employee_id)
+           WHERE test_score IS NOT NULL
+             AND manager_hire = 'N'
+           GROUP BY city
+           ORDER BY city ASC
+           ")
 
 # display the mean & sd of number of years of employment split by performance level
 

@@ -1,8 +1,10 @@
+# Script Settings and Resources
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
 library(DBI)
 library(RPostgres)
 library(tidyverse)
 
+# Data Import and Cleaning
 con <- dbConnect(
   RPostgres::Postgres(),
   host = "ep-billowing-union-am14lcnh-pooler.c-5.us-east-1.aws.neon.tech",

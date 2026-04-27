@@ -32,3 +32,24 @@ week13_tbl <- employees_tbl %>%
   left_join(offices_tbl, by = c("city" = "office"))
 write_csv(week13_tbl, "../out/week13.csv")
 
+
+# Analysis
+# display the total number of managers
+total_managers_tbl <- week13_tbl %>%
+  summarise(total_managers = n())
+total_managers_tbl
+
+# display the total number of unique managers
+unique_managers_tbl <- week13_tbl %>%
+  summarise(unique_managers = n_distinct(employee_id))
+unique_managers_tbl
+
+# diaplay a summary of the number of managers split by location, but only include those who were not originally hired as managers
+managers_by_location_tbl <- week13_tbl %>% 
+  filter(manager_hire == "N") %>% 
+  count(office_type, name = "n_managers")
+managers_by_location_tbl
+
+# display the mean & sd of number of years of employment split by performance level
+
+
